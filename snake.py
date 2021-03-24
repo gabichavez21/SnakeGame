@@ -138,28 +138,29 @@ class Snake(object):
         Method called to adjust velocities to move right, once we
         ensure we are not currently traveling left.
         '''
-        if self.__xV != -1:
-            self.__xV = 1
-            self.__yV = 0
+
+
+
+
 
     def dir_left(self):
         '''
         Method called to adjust velocities to move left, once we
         ensure we are not currently traveling right.
         '''
-        if self.__xV != 1:
-            self.__xV = -1
-            self.__yV  = 0
+
+
+
+
 
     def dir_down(self):
         '''
         Method called to adjust velocities to move down, once we
         ensure we are not currently traveling up.
         '''
-        # If not going up, change direction to down.
-        if self.__yV != -1: # if not going up
-            self.__yV = 1   # go down
-            self.__xV = 0   # dont move vertically
+
+
+
 
     def eat_food(self):
         '''
@@ -215,16 +216,6 @@ class Square(object):
          window.blit(square, (self.x * self.__gap + 1 ,self.y * self.__gap + 1))
 
 
-def game_over(score):
-    '''
-    Display a message box once the game ends.
-    '''
-    msg = "Your score was " + str(score)
-    # root = Tk()
-    # Tk().wm_withdraw()
-    messagebox.showinfo('GAME OVER',msg)
-
-
 def main():
     pygame.init()                               # Initialize pygame
     board = Board()                             # create board object
@@ -252,7 +243,7 @@ def main():
         board.draw(window)                      # draw board to window
         snake.draw(window)                      # draw snake to window
         pygame.display.flip()                   # update the window
-        fps.tick(8)                            # max fps
+        fps.tick(8)                             # max fps
         running = not snake.check_collision()
 
 

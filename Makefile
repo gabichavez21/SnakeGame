@@ -11,7 +11,7 @@ other_docs :
 	pydoc3 -w sys
 
 pygame :
-	python -m pip install pygame --user
+	python3 -m pip install pygame --user
 
 clean :
 	rm -rf *.html __pycache__
