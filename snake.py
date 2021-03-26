@@ -66,12 +66,12 @@ class Snake(object):
     the coordinates of its head, body, and to help draw to window.
 
     Attributes:
-        __xV   - velocity on x-axis
-        __yV   - velocity on y-axis
-        __size - length of tail
-        __head - Square object containing coordinates for head
-        __body - list of Square objects to hold coords for body
-        __food - Square object representing the snake's food
+        xV   - velocity on x-axis
+        yV   - velocity on y-axis
+        size - length of tail
+        head - Square object containing coordinates for head
+        body - list of Square objects to hold coords for body
+        food - Square object representing the snake's food
     '''
     def __init__(self, x: int = 10, y: int = 10) -> None:
         self.xV = 1    # x velocity
