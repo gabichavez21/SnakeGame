@@ -42,7 +42,8 @@ class Board(object):
         self.width = w
         self.height = h
         self.rows = r
-        self.gap = w // r
+        self.gap = w // r     # Size of each box on the board
+                              # Distance between each line
 
     def draw(self, window) -> None:
         '''
@@ -97,8 +98,11 @@ class Snake(object):
             3rd - update head position according to velocities
             4th - if we have traveled off the window, wrap to other side
         '''
+        # Checks if Snake eats food
         if self.head.x == self.food.x and self.head.y == self.food.y:
             self.eat_food()
+
+        # Updates the body and tail of the snake
         for i in range(self.size - 1, -1, -1):
             if i == 0:
                 self.body[i].x = self.head.x
@@ -111,12 +115,13 @@ class Snake(object):
         self.head.y += self.yV # update y pos according to y velocity
 
 
-
+        # Checks if snake goes off left of right side of board
         if self.head.x > 19:    # If snake has gone off right side of board:
             self.head.x = 0     # Place snake left side of board
         if self.head.x < 0:     # If snake has gone off of left side of board:
             self.head.x = 19    # Place snake on right side of board
 
+        # Checks if snake goes off top or bottom of board
         if self.head.y > 19:
             self.head.y = 0
         if self.head.y < 0:
@@ -172,7 +177,7 @@ class Snake(object):
 
     def draw(self, window):
         '''
-        This method displays the food to the window passed to it.
+        This method displays the food and snake to the window passed to it.
         '''
         self.food.draw(window)
         self.head.draw(window)
@@ -203,15 +208,17 @@ class Square(object):
         self.gap = 500 // 20
 
     def draw(self, window):
+         # Creates the square object
          square = pygame.Surface((self.gap - 1,self.gap - 1))
          square.fill((255,0,0))
+         # Displays to the screen by converting grid coordinates to pixels
          window.blit(square, (self.x * self.gap + 1 ,self.y * self.gap + 1))
 
 
 def main():
     pygame.init()                               # Initialize pygame
     board = Board()                             # create board object
-    snake  = Snake()
+    snake  = Snake()                            # create snake object
     window = pygame.display.set_mode((500,500)) # create window 500x500
     pygame.display.set_caption("Snake")         # Window title is Snake
     fps = pygame.time.Clock()                   # create clock object
@@ -222,7 +229,9 @@ def main():
                 pygame.display.quit()
                 pygame.quit()
                 sys.exit()
-        keys = pygame.key.get_pressed()         # This will give us a dictonary where each key has a value of 1 or 0. Where 1 is pressed and 0 is not pressed.
+        keys = pygame.key.get_pressed()         # This will give us a dictonary where each key has
+                                                # a value of 1 or 0. Where 1 is pressed and 0 is 
+                                                # not pressed.
         if keys[pygame.K_LEFT]:                 # Left pushed
             snake.dir_left()                    # Go left
         if keys[pygame.K_RIGHT]:                # Right pushed
